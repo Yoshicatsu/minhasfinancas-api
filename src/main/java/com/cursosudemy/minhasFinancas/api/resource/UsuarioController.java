@@ -21,7 +21,7 @@ public class UsuarioController {
 
 	@GetMapping("/helloworld")
 	public String helloWorld() {
-		return "hello world!";
+		return "lets fking goooo!";
 	}
 
 	private UsuarioService service;
@@ -41,28 +41,11 @@ public class UsuarioController {
 		
 	}
 	
-	Usuario usuarioTeste = Usuario.builder().nome("teste1").email("email1@email.com").senha("12345").build();
-	
-
-	@PostMapping
+	@PostMapping()
 	public ResponseEntity salvar(@RequestBody UsuarioDTO dto) {
 		Usuario usuario = Usuario.builder().nome(dto.getNome()).email(dto.getEmail()).senha(dto.getSenha()).build();
-		System.out.println(dto.getNome());
-		System.out.println(dto.getEmail());
-		System.out.println(dto.getSenha());
-		System.out.println(usuarioTeste.getNome());
-		System.out.println(usuarioTeste.getEmail());
-		System.out.println(usuarioTeste.getSenha());
-		Usuario usuarioTesteSalvo = service.salvarUsuario(usuario);
-		System.out.println(usuarioTesteSalvo.getNome());
-		System.out.println(usuarioTesteSalvo.getEmail());
-		System.out.println(usuarioTesteSalvo.getSenha());
 		try {
 			Usuario usuarioSalvo = service.salvarUsuario(usuario);
-			System.out.println(usuarioSalvo.getNome());
-			System.out.println(usuarioSalvo.getEmail());
-			System.out.println(usuarioSalvo.getSenha());
-
 			return new ResponseEntity(usuarioSalvo, HttpStatus.CREATED);
 		} catch (RegraNegocioException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());

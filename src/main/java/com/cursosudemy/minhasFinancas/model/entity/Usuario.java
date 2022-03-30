@@ -1,11 +1,17 @@
 package com.cursosudemy.minhasFinancas.model.entity;
 
+import java.time.LocalDate;
+import java.util.Objects;
+
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +19,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "usuario") //teste(name = "usuario", schema = "financas")
+@Table(name = "usuario", schema = "financas")
 @Builder
 @Data
 @NoArgsConstructor
@@ -33,8 +39,7 @@ public class Usuario {
 	
 	@Column(name = "senha")
 	private String senha;
-	
-/*
+
 	public Long getId() {
 		return id;
 	}
@@ -89,5 +94,5 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + "]";
 	}
-	*/
+
 }
